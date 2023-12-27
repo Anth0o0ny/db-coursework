@@ -6,8 +6,8 @@ public class Coach extends Person {
         super();
     }
 
-    public Coach(int id, String name) {
-        super(id, name);
+    public Coach(int id, String fullName) {
+        super(id, fullName);
     }
 
 }

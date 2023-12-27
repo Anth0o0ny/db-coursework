@@ -10,12 +10,12 @@ public class Sportsman extends Person {
         super();
     }
 
-    public Sportsman(int id, String name) {
-        super(id, name);
+    public Sportsman(int id, String fullName) {
+        super(id, fullName);
     }
 
-    public Sportsman(int id, String name, Rank rank) {
-        super(id, name);
+    public Sportsman(int id, String fullName, Rank rank) {
+        super(id, fullName);
         this.rank = rank;
     }
 

@@ -9,13 +9,13 @@ public class Person {
 
     private int id;
 
-    private String name;
+    private String fullName;
 
     public Person() {}
 
-    public Person(int id, String name) {
+    public Person(int id, String fullName) {
         this.id = id;
-        this.name = name;
+        this.fullName = fullName;
     }
 
 }
