@@ -15,12 +15,12 @@ public class DB {
     }
 
     public boolean addPool(Pool pool) {
-        String sql = "INSERT INTO pool (id, name, pool_size) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO pool (id, name, pool_size) VALUES (?, ?, ?::pool_size)";
         template.update(
                 sql,
                 pool.getId(),
                 pool.getName(),
-                pool.getPoolSize()
+                pool.getPoolSize().toString()
         );
         return true;
     }
