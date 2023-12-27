@@ -1,45 +1,66 @@
-CREATE TYPE POOL_SIZE AS ENUM ('50', '25');
-CREATE TYPE RANK AS ENUM ('MS', 'CMS', '1A', '2A', '3A', '1Y', '2Y', '3Y', 'NR');
-CREATE TYPE DISTANCES AS ENUM (
-    '50 butterfly',
-    '50 backstroke',
-    '50 breaststroke',
-    '50 freestyle',
-    '100 butterfly',
-    '100 backstroke',
-    '100 breaststroke',
-    '100 medley',
-    '100 freestyle',
-    '200 butterfly',
-    '200 backstroke',
-    '200 breaststroke',
-    '200 freestyle',
-    '200 medley',
-    '400 freestyle',
-    '400 medley',
-    '800 freestyle',
-    '1500 freestyle'
-);
+--CREATE TYPE POOL_SIZE AS ENUM ('50', '25');
+--CREATE TYPE RANK AS ENUM ('MS', 'CMS', '1A', '2A', '3A', '1Y', '2Y', '3Y', 'NR');
+--CREATE TYPE DISTANCES AS ENUM (
+--    '50 butterfly',
+--    '50 backstroke',
+--    '50 breaststroke',
+--    '50 freestyle',
+--    '100 butterfly',
+--    '100 backstroke',
+--    '100 breaststroke',
+--    '100 medley',
+--    '100 freestyle',
+--    '200 butterfly',
+--    '200 backstroke',
+--    '200 breaststroke',
+--    '200 freestyle',
+--    '200 medley',
+--    '400 freestyle',
+--    '400 medley',
+--    '800 freestyle',
+--    '1500 freestyle'
+--);
 
-CREATE TABLE POOL(
+DO $$
+BEGIN
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pool_size') THEN
+        CREATE TYPE POOL_SIZE AS ENUM ('50', '25');
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rank') THEN
+        CREATE TYPE RANK AS ENUM ('MS', 'CMS', '1A', '2A', '3A', '1Y', '2Y', '3Y', 'NR');
+    END IF;
+
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'distances') THEN
+        CREATE TYPE DISTANCES AS ENUM (
+            '50 butterfly', '50 backstroke', '50 breaststroke', '50 freestyle',
+            '100 butterfly', '100 backstroke', '100 breaststroke', '100 medley',
+            '100 freestyle', '200 butterfly', '200 backstroke', '200 breaststroke',
+            '200 freestyle', '200 medley', '400 freestyle', '400 medley',
+            '800 freestyle', '1500 freestyle'
+        );
+    END IF;
+END $$;
+
+CREATE TABLE IF NOT EXISTS POOL(
   ID SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   POOL_SIZE POOL_SIZE
 );
 
-CREATE TABLE EXERCISE(
+CREATE TABLE IF NOT EXISTS EXERCISE(
   ID SERIAL PRIMARY KEY,
   DESCRIPTION TEXT,
   COUNT INTEGER DEFAULT 4
 );
 
-CREATE TABLE SPORTS_SCHOOL(
+CREATE TABLE IF NOT EXISTS SPORTS_SCHOOL(
   ID SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   POOL_ID SERIAL REFERENCES POOL(ID)
 );
 
-CREATE TABLE COMPETITION(
+CREATE TABLE IF NOT EXISTS COMPETITION(
   ID SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   POOL_ID SERIAL REFERENCES POOL(ID),
@@ -48,7 +69,7 @@ CREATE TABLE COMPETITION(
   DISTANCE DISTANCES
 );
 
-CREATE TABLE SPORTSMAN(
+CREATE TABLE IF NOT EXISTS SPORTSMAN(
   ID SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   SURNAME TEXT NOT NULL,
@@ -57,12 +78,12 @@ CREATE TABLE SPORTSMAN(
   SPORTSCHOOL_ID SERIAL REFERENCES SPORTS_SCHOOL(ID)
 );
 
-CREATE TABLE ENTRY(
+CREATE TABLE IF NOT EXISTS ENTRY(
   COMPETITION_ID SERIAL REFERENCES COMPETITION(ID),
   SPORTSMAN_ID SERIAL REFERENCES SPORTSMAN(ID)
 );
 
-CREATE TABLE COACH(
+CREATE TABLE IF NOT EXISTS COACH(
   ID SERIAL PRIMARY KEY,
   NAME TEXT NOT NULL,
   SURNAME TEXT NOT NULL,
@@ -70,7 +91,7 @@ CREATE TABLE COACH(
   SPORTSCHOOL_ID SERIAL REFERENCES SPORTS_SCHOOL(ID)
 );
 
-CREATE TABLE RESULT(
+CREATE TABLE IF NOT EXISTS RESULT(
   ID SERIAL PRIMARY KEY,
   SPORTSMAN_ID SERIAL REFERENCES SPORTSMAN(ID),
   DISTANCE DISTANCES,
@@ -79,20 +100,20 @@ CREATE TABLE RESULT(
   RANK RANK
 );
 --
-CREATE TABLE MEDICAL_CHECKUP(
+CREATE TABLE IF NOT EXISTS MEDICAL_CHECKUP(
   ID SERIAL PRIMARY KEY,
   DATE DATE NOT NULL,
   SPORTSMAN_ID SERIAL REFERENCES SPORTSMAN(ID),
   DOPING_CHECK BOOLEAN
 );
 
-CREATE TABLE TRAINING(
+CREATE TABLE IF NOT EXISTS TRAINING(
   ID SERIAL PRIMARY KEY,
   COACH_ID SERIAL REFERENCES COACH(ID),
   SPORTSMAN_ID SERIAL REFERENCES SPORTSMAN(ID)
 );
 
-CREATE TABLE TRAINING_EVENT(
+CREATE TABLE IF NOT EXISTS TRAINING_EVENT(
   SPORTSMAN_ID SERIAL REFERENCES SPORTSMAN(ID),
   COACH_ID SERIAL REFERENCES COACH(ID),
   TRAINING_ID SERIAL REFERENCES TRAINING(ID)
