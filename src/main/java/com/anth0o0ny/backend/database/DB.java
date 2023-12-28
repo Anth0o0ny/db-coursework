@@ -49,4 +49,12 @@ public class DB {
         String sql = "SELECT c.ID, c.NAME, p.NAME AS POOL_NAME, c.START_DATE, c.END_DATE, c.DISTANCE FROM COMPETITION c JOIN POOL p ON c.POOL_ID = p.ID";
         return template.query(sql, new BeanPropertyRowMapper<>(Competition.class));
     }
+
+    public List<Sportschool> getSchoolByName(String name) {
+        String sql = "SELECT s.ID, s.NAME, p.POOL_SIZE " +
+                "FROM SPORTS_SCHOOL s " +
+                "JOIN POOL p ON s.POOL_ID = p.ID " +
+                "WHERE s.NAME = ?";;
+        return template.query(sql, new Object[]{name}, new BeanPropertyRowMapper<>(Sportschool.class));
+    }
 }
