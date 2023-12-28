@@ -1,9 +1,6 @@
 package com.anth0o0ny.backend.database;
 
-import com.anth0o0ny.backend.entities.Coach;
-import com.anth0o0ny.backend.entities.Person;
-import com.anth0o0ny.backend.entities.Pool;
-import com.anth0o0ny.backend.entities.Sportsman;
+import com.anth0o0ny.backend.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -57,5 +54,10 @@ public class DB {
                 "WHERE s.ID = ?";
 
         return template.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Coach.class));
+    }
+
+    public List<Competition> getAllCompetitions() {
+        String sql = "SELECT c.ID, c.NAME, p.NAME AS POOL_NAME, c.START_DATE, c.END_DATE, c.DISTANCE FROM COMPETITION c JOIN POOL p ON c.POOL_ID = p.ID";
+        return template.query(sql, new BeanPropertyRowMapper<>(Competition.class));
     }
 }
