@@ -1,10 +1,23 @@
 package com.anth0o0ny.backend.entities;
 
+import com.anth0o0ny.backend.database.DB;
+
 public class Exercise {
     private int id;
     private String description;
     private int count;
     private int trainingId;
+
+
+    public Exercise() {
+    }
+
+    public Exercise(int id, String description, int count, int trainingId) {
+        this.id = id;
+        this.description = description;
+        this.count = count;
+        this.trainingId = trainingId;
+    }
 
     public int getId() {
         return id;

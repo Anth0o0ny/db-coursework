@@ -57,4 +57,12 @@ public class DB {
                 "WHERE s.NAME = ?";;
         return template.query(sql, new Object[]{name}, new BeanPropertyRowMapper<>(Sportschool.class));
     }
+
+    public List<Exercise> getExercisesByUserId(int userId) {
+        String sql = "SELECT e.ID, e.DESCRIPTION, e.COUNT, e.TRAINING_ID " +
+                "FROM EXERCISE e " +
+                "JOIN TRAINING t ON e.TRAINING_ID = t.ID " +
+                "WHERE t.SPORTSMAN_ID = ?";
+        return template.query(sql, new Object[]{userId}, new BeanPropertyRowMapper<>(Exercise.class));
+    }
 }
