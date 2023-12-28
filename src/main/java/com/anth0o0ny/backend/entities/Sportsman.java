@@ -9,22 +9,22 @@ public class Sportsman extends Person {
 
     private Date yob;
     private Rank rank;
-    private int sportschoolId;
+    private String sportschoolName;
 
     public Sportsman() {
         super();
     }
 
 
-    public Sportsman(int id, String fullName, Date yob, Rank rank, int sportschoolId) {
+    public Sportsman(int id, String fullName, Date yob, Rank rank, String sportschoolName) {
         super(id, fullName);
         this.yob = yob;
         this.rank = rank;
-        this.sportschoolId = sportschoolId;
+        this.sportschoolName = sportschoolName;
     }
 
-    public int getSportschoolId() {
-        return sportschoolId;
+    public String getSportschoolName() {
+        return sportschoolName;
     }
 
 
@@ -46,7 +46,7 @@ public class Sportsman extends Person {
         this.yob = yob;
     }
 
-    public void setSportschoolId(int sportschoolId) {
-        this.sportschoolId = sportschoolId;
+    public void setSportschoolName(String sportschoolName) {
+        this.sportschoolName = sportschoolName;
     }
 }

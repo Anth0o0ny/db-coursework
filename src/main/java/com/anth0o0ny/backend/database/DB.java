@@ -37,7 +37,7 @@ public class DB {
     }
 
     public List<Sportsman> getSportsmanById(int id) {
-        String sql = "SELECT s.ID, s.FULL_NAME, s.YOB, s.RANK, s.SPORTSCHOOL_ID, ss.NAME AS SPORTSCHOOL_NAME " +
+        String sql = "SELECT s.ID, s.FULL_NAME, s.YOB, s.RANK, ss.NAME AS SPORTSCHOOL_NAME " +
                 "FROM sportsman s " +
                 "JOIN sports_school ss ON s.SPORTSCHOOL_ID = ss.ID " +
                 "WHERE s.ID = ?";
