@@ -1,25 +1,4 @@
---CREATE TYPE POOL_SIZE AS ENUM ('50', '25');
---CREATE TYPE RANK AS ENUM ('MS', 'CMS', '1A', '2A', '3A', '1Y', '2Y', '3Y', 'NR');
---CREATE TYPE DISTANCES AS ENUM (
---    '50 butterfly',
---    '50 backstroke',
---    '50 breaststroke',
---    '50 freestyle',
---    '100 butterfly',
---    '100 backstroke',
---    '100 breaststroke',
---    '100 medley',
---    '100 freestyle',
---    '200 butterfly',
---    '200 backstroke',
---    '200 breaststroke',
---    '200 freestyle',
---    '200 medley',
---    '400 freestyle',
---    '400 medley',
---    '800 freestyle',
---    '1500 freestyle'
---);
+
 
 DO $$
 BEGIN
@@ -31,13 +10,13 @@ BEGIN
         CREATE TYPE RANK AS ENUM ('MS', 'CMS', 'I_A', 'II_A', 'III_A', 'I_Y', 'II_Y', 'III_Y', 'NR');
     END IF;
 
-    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'distances') THEN
-        CREATE TYPE DISTANCES AS ENUM (
-            '50 butterfly', '50 backstroke', '50 breaststroke', '50 freestyle',
-            '100 butterfly', '100 backstroke', '100 breaststroke', '100 medley',
-            '100 freestyle', '200 butterfly', '200 backstroke', '200 breaststroke',
-            '200 freestyle', '200 medley', '400 freestyle', '400 medley',
-            '800 freestyle', '1500 freestyle'
+    IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'distance') THEN
+        CREATE TYPE DISTANCE AS ENUM (
+            '_50_BUTTERFLY', '_50_BACKSTROKE', '_50_BREASTSTROKE', '_50_FREESTYLE',
+            '_100_BUTTERFLY', '_100_BACKSTROKE', '_100_BREASTSTROKE', '_100_MEDLEY',
+            '_100_FREESTYLE', '_200_BUTTERFLY', '_200_BACKSTROKE', '_200_BREASTSTROKE',
+            '_200_FREESTYLE', '_200_MEDLEY', '_400_FREESTYLE', '_400_MEDLEY',
+            '_800_FREESTYLE', '_1500_FREESTYLE'
         );
     END IF;
 END $$;
@@ -66,7 +45,7 @@ CREATE TABLE IF NOT EXISTS COMPETITION(
   POOL_ID SERIAL REFERENCES POOL(ID),
   START_DATE DATE NOT NULL,
   END_DATE DATE NOT NULL,
-  DISTANCE DISTANCES
+  DISTANCE DISTANCE
 );
 
 CREATE TABLE IF NOT EXISTS SPORTSMAN(
@@ -92,7 +71,7 @@ CREATE TABLE IF NOT EXISTS COACH(
 CREATE TABLE IF NOT EXISTS RESULT(
   ID SERIAL PRIMARY KEY,
   SPORTSMAN_ID SERIAL REFERENCES SPORTSMAN(ID),
-  DISTANCE DISTANCES,
+  DISTANCE DISTANCE,
   TIME INTERVAL DEFAULT '0 MINUTE_SECOND',
   COMPETITION_ID SERIAL REFERENCES COMPETITION(ID),
   RANK RANK
