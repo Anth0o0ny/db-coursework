@@ -1,23 +1,34 @@
 package com.anth0o0ny.backend.entities;
 
-import lombok.Getter;
-import lombok.Setter;
 
-import java.util.List;
-
-@Setter
-@Getter
 public class Training {
-
     private int id;
+    private int coachId;
+    private int sportsmanId;
 
-    private List<Task> tasks;
-
-    public Training() {}
-
-    public Training(int id, List<Task> tasks) {
-        this.id = id;
-        this.tasks = tasks;
+    // геттеры и сеттеры
+    public int getId() {
+        return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getCoachId() {
+        return coachId;
+    }
+
+    public void setCoachId(int coachId) {
+        this.coachId = coachId;
+    }
+
+    public int getSportsmanId() {
+        return sportsmanId;
+    }
+
+    public void setSportsmanId(int sportsmanId) {
+        this.sportsmanId = sportsmanId;
+    }
 }
+
