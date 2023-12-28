@@ -1,45 +1,41 @@
 package com.anth0o0ny.backend.entities;
 
+import com.anth0o0ny.backend.enums.PoolSize;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Pool {
-    private int id = 1;
+    private int id;
     private String name;
-    private String poolSize = "50";
-
-//    public Pool(int id) {
-//        this.id = 1;
-//    }
+    private PoolSize poolSize;
 
     public Pool() {
     }
 
-    @JsonCreator
-    public Pool(@JsonProperty("id") int id,
-                @JsonProperty("name") String name,
-                @JsonProperty("poolSize") String poolSize) {
+    public Pool(int id,
+                String name,
+                PoolSize poolSize) {
         this.id = id;
         this.name = name;
         this.poolSize = poolSize;
     }
 
-    @JsonProperty("id")
+
     public int getId() {
         return id;
     }
 
-    @JsonProperty("name")
+
     public String getName() {
         return name;
     }
 
-    @JsonProperty("poolSize")
-    public String getPoolSize() {
+
+    public PoolSize getPoolSize() {
         return poolSize;
     }
 
-    public void setPoolSize(String poolSize) {
+    public void setPoolSize(PoolSize poolSize) {
         this.poolSize = poolSize;
     }
 
