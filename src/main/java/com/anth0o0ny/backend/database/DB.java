@@ -2,6 +2,7 @@ package com.anth0o0ny.backend.database;
 
 import com.anth0o0ny.backend.entities.Person;
 import com.anth0o0ny.backend.entities.Pool;
+import com.anth0o0ny.backend.entities.Sportsman;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -32,5 +33,14 @@ public class DB {
     public List<Person> getSportsmanByName(String fullName) {
         String sql = "SELECT * FROM sportsman WHERE FULL_NAME = ?";
         return template.query(sql, new Object[]{fullName}, new BeanPropertyRowMapper<>(Person.class));
+    }
+
+    public List<Sportsman> getSportsmanById(int id) {
+        String sql = "SELECT s.ID, s.FULL_NAME, s.YOB, s.RANK, s.SPORTSCHOOL_ID, ss.NAME AS SPORTSCHOOL_NAME " +
+                "FROM sportsman s " +
+                "JOIN sports_school ss ON s.SPORTSCHOOL_ID = ss.ID " +
+                "WHERE s.ID = ?";
+
+        return template.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Sportsman.class));
     }
 }
