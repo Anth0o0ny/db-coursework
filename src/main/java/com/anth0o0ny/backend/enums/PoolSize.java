@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum PoolSize {
 
-    FiftyMeters ("50 метров"),
-    TwentyFiveMeters ("25 метров");
+    _50 ("50 метров"),
+    _25 ("25 метров");
 
     private final String title;
 

@@ -3,7 +3,7 @@
 DO $$
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'pool_size') THEN
-        CREATE TYPE POOL_SIZE AS ENUM ('50', '25');
+        CREATE TYPE POOL_SIZE AS ENUM ('_50', '_25');
     END IF;
 
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rank') THEN
