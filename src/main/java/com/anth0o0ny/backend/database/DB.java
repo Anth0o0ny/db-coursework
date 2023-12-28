@@ -1,5 +1,6 @@
 package com.anth0o0ny.backend.database;
 
+import com.anth0o0ny.backend.entities.Coach;
 import com.anth0o0ny.backend.entities.Person;
 import com.anth0o0ny.backend.entities.Pool;
 import com.anth0o0ny.backend.entities.Sportsman;
@@ -42,5 +43,19 @@ public class DB {
                 "WHERE s.ID = ?";
 
         return template.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Sportsman.class));
+    }
+
+    public List<Person> getCoachByName(String fullName) {
+        String sql = "SELECT * FROM coach WHERE FULL_NAME = ?";
+        return template.query(sql, new Object[]{fullName}, new BeanPropertyRowMapper<>(Person.class));
+    }
+
+    public List<Coach> getCoachById(int id) {
+        String sql = "SELECT s.ID, s.FULL_NAME, s.YOB, s.SPORTSCHOOL_ID, ss.NAME AS SPORTSCHOOL_NAME " +
+                "FROM coach s " +
+                "JOIN sports_school ss ON s.SPORTSCHOOL_ID = ss.ID " +
+                "WHERE s.ID = ?";
+
+        return template.query(sql, new Object[]{id}, new BeanPropertyRowMapper<>(Coach.class));
     }
 }

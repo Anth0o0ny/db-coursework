@@ -1,6 +1,7 @@
 package com.anth0o0ny.backend.controllers;
 
 import com.anth0o0ny.backend.database.DB;
+import com.anth0o0ny.backend.entities.Coach;
 import com.anth0o0ny.backend.entities.Person;
 import com.anth0o0ny.backend.entities.Sportsman;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,4 +33,15 @@ public class PersonController {
         return new Person();
     }
 
+    @PostMapping("/getCoachByName")
+    public List<Person> getCoachByName(@RequestBody Map<String, String> requestBody) {
+        String fullName = requestBody.get("fullName");
+        return db.getCoachByName(fullName);
+    }
+
+    @PostMapping("/getCoachById")
+    public List<Coach> getCoachById(@RequestBody Map<String, Integer> requestBody) {
+        int id = requestBody.get("id");
+        return db.getCoachById(id);
+    }
 }
