@@ -1,15 +1,13 @@
 package com.anth0o0ny.backend.controllers;
 
-import com.anth0o0ny.backend.Service.ExerciseService;
-import com.anth0o0ny.backend.Service.TrainingService;
+import com.anth0o0ny.backend.service.ExerciseService;
+import com.anth0o0ny.backend.service.TrainingService;
 import com.anth0o0ny.backend.entities.request.ExerciseRequest;
 import com.anth0o0ny.backend.entities.request.TrainingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/training")

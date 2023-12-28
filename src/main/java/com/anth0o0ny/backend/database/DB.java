@@ -1,6 +1,7 @@
 package com.anth0o0ny.backend.database;
 
 import com.anth0o0ny.backend.entities.*;
+import com.anth0o0ny.backend.mapper.TrainingWithExercisesRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,11 +59,14 @@ public class DB {
         return template.query(sql, new Object[]{name}, new BeanPropertyRowMapper<>(Sportschool.class));
     }
 
-    public List<Exercise> getExercisesByUserId(int userId) {
-        String sql = "SELECT e.ID, e.DESCRIPTION, e.COUNT, e.TRAINING_ID " +
-                "FROM EXERCISE e " +
-                "JOIN TRAINING t ON e.TRAINING_ID = t.ID " +
+    public List<TrainingWithExercises> getExercisesByUserId(int userId) {
+        String sql = "SELECT t.ID AS trainingId, t.COACH_ID AS coachId, t.SPORTSMAN_ID AS sportsmanId, " +
+                "e.ID AS exerciseId, e.DESCRIPTION, e.COUNT, e.TRAINING_ID  " +
+                "FROM TRAINING t " +
+                "LEFT JOIN EXERCISE e ON t.ID = e.TRAINING_ID " +
                 "WHERE t.SPORTSMAN_ID = ?";
-        return template.query(sql, new Object[]{userId}, new BeanPropertyRowMapper<>(Exercise.class));
+        return template.queryForObject(sql, new Object[]{userId}, new TrainingWithExercisesRowMapper());
     }
+
+
 }
