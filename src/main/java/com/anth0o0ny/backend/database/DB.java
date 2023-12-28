@@ -17,17 +17,6 @@ public class DB {
     public DB() {
     }
 
-    public boolean addPool(Pool pool) {
-        String sql = "INSERT INTO pool (id, name, pool_size) VALUES (?, ?, ?::pool_size)";
-        template.update(
-                sql,
-                pool.getId(),
-                pool.getName(),
-                pool.getPoolSize().toString()
-        );
-        return true;
-    }
-
     public List<Person> getSportsmanByName(String fullName) {
         String sql = "SELECT * FROM sportsman WHERE FULL_NAME = ?";
         return template.query(sql, new Object[]{fullName}, new BeanPropertyRowMapper<>(Person.class));
