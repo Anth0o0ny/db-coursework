@@ -28,7 +28,7 @@ BEGIN
     END IF;
 
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'rank') THEN
-        CREATE TYPE RANK AS ENUM ('MS', 'CMS', '1A', '2A', '3A', '1Y', '2Y', '3Y', 'NR');
+        CREATE TYPE RANK AS ENUM ('MS', 'CMS', 'I_A', 'II_A', 'III_A', 'I_Y', 'II_Y', 'III_Y', 'NR');
     END IF;
 
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'distances') THEN
