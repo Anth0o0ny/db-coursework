@@ -1,0 +1,12 @@
+CREATE OR REPLACE FUNCTION get_competition_distants(RESULT_ID INTEGER) RETURNS DISTANCE AS
+$$
+DECLARE
+    comp_distance DISTANCE;
+BEGIN
+    SELECT DISTANCE INTO comp_distance
+    FROM COMPETITION
+    WHERE ID = RESULT_ID;
+    RETURN comp_distance;
+END
+$$
+LANGUAGE plpgsql;
