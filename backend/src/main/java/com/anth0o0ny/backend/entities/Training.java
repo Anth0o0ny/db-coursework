@@ -6,9 +6,6 @@ public class Training {
     private int coachId;
     private int sportsmanId;
 
-
-
-    // геттеры и сеттеры
     public int getId() {
         return id;
     }
@@ -33,4 +30,3 @@ public class Training {
         this.sportsmanId = sportsmanId;
     }
 }
-

@@ -24,4 +24,3 @@ public class SchoolController {
         return schoolService.getSchoolByName(name);
     }
 }
-

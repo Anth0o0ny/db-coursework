@@ -24,5 +24,3 @@ public class ExerciseController {
         return exerciseService.getExercisesByUserId(userId);
     }
 }
-
-

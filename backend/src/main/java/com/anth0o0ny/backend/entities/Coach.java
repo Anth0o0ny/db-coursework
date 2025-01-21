@@ -19,7 +19,6 @@ public class Coach extends Person {
         this.sportschoolId = sportschoolId;
     }
 
-    //  incorrect yob data
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = Constants.DATA_PATTERN, timezone = Constants.UTC_TIME_ZONE)
     public Date getYob() {
         return yob;

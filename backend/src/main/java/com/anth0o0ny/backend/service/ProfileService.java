@@ -34,5 +34,3 @@ public class ProfileService {
         return Constants.OUTPUT_NAME_STRING + sportsman.getFullName() + Constants.OUTPUT_RANK_STRING + sportsman.getRank();
     }
 }
-
-

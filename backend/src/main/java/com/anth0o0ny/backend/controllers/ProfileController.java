@@ -21,4 +21,3 @@ public class ProfileController {
         return profileService.getUserInfo(userId);
     }
 }
-

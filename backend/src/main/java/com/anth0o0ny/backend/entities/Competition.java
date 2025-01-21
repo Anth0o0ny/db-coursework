@@ -75,5 +75,3 @@ public class Competition {
         this.distance = distance;
     }
 }
-
-

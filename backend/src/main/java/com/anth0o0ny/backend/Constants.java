@@ -47,7 +47,7 @@ public class Constants {
     // Service constants
     public static final String INSERT_EXERCISE = "INSERT INTO EXERCISE (DESCRIPTION, COUNT, TRAINING_ID) VALUES (?, ?, ?)";
 
-    // Названия колонок
+    // Column names
     public static final String COL_FULL_NAME = "full_name";
     public static final String COL_YOB = "yob";
     public static final String COL_RANK = "rank";
