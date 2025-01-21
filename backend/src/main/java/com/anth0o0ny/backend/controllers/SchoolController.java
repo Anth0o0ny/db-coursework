@@ -1,6 +1,7 @@
 package com.anth0o0ny.backend.controllers;
 
 import com.anth0o0ny.backend.Constants;
+import com.anth0o0ny.backend.dto.entitiesDto.SportschoolDto;
 import com.anth0o0ny.backend.entities.Sportschool;
 import com.anth0o0ny.backend.service.SchoolService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class SchoolController {
     }
 
     @GetMapping("/{"+ Constants.SPORTS_SCHOOLS_NAME_PATH + "}")
-    public List<Sportschool> getSchoolByName(@PathVariable(Constants.SPORTS_SCHOOLS_NAME_PATH) String name) {
+    public List<SportschoolDto> getSchoolByName(@PathVariable(Constants.SPORTS_SCHOOLS_NAME_PATH) String name) {
         return schoolService.getSchoolByName(name);
     }
 }

@@ -1,7 +1,7 @@
 package com.anth0o0ny.backend.controllers;
 
 import com.anth0o0ny.backend.Constants;
-import com.anth0o0ny.backend.entities.Competition;
+import com.anth0o0ny.backend.dto.entitiesDto.CompetitionDto;
 import com.anth0o0ny.backend.service.CompetitionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ public class CompetitionController {
     }
 
     @GetMapping
-    public List<Competition> getAllCompetitions() {
+    public List<CompetitionDto> getAllCompetitions() {
         return competitionService.getAllCompetitions();
     }
 }

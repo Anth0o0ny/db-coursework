@@ -16,7 +16,6 @@ public class TrainingService {
 
     public int createTraining(int coachId, int sportsmanId) {
         jdbcTemplate.update(Constants.INSERT_TRAINING, coachId, sportsmanId);
-
         String getLastTrainingIdSql = Constants.SELECT_LAST_TRAINING_ID;
         return jdbcTemplate.queryForObject(getLastTrainingIdSql, Integer.class);
     }

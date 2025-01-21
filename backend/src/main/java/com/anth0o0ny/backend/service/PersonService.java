@@ -1,6 +1,10 @@
 package com.anth0o0ny.backend.service;
 
 import com.anth0o0ny.backend.Constants;
+import com.anth0o0ny.backend.dto.entitiesDto.CoachDto;
+import com.anth0o0ny.backend.dto.entitiesDto.PersonDto;
+import com.anth0o0ny.backend.dto.entitiesDto.SportsmanDto;
+import com.anth0o0ny.backend.dto.mapper.PersonMapper;
 import com.anth0o0ny.backend.entities.Person;
 import com.anth0o0ny.backend.entities.Sportsman;
 import com.anth0o0ny.backend.entities.Coach;
@@ -10,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PersonService {
@@ -21,9 +26,9 @@ public class PersonService {
         this.jdbcTemplate = jdbcTemplate;
     }
 
-    public List<Person> getSportsmanByName(String fullName) {
+    public List<PersonDto> getSportsmanByName(String fullName) {
         String sql = Constants.SELECT_SPORTSMAN_BY_NAME;
-        return jdbcTemplate.query(sql, new Object[]{fullName}, (rs, rowNum) ->
+        List<Sportsman> sportsmen = jdbcTemplate.query(sql, new Object[]{fullName}, (rs, rowNum) ->
                 new Sportsman(
                         rs.getInt(Constants.ID),
                         rs.getString(Constants.COL_FULL_NAME),
@@ -32,11 +37,14 @@ public class PersonService {
                         rs.getInt(Constants.COL_SCHOOL_ID)
                 )
         );
+        return sportsmen.stream()
+                .map(PersonMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    public List<Sportsman> getSportsmanById(int id) {
+    public List<SportsmanDto> getSportsmanById(int id) {
         String sql = Constants.SELECT_SPORTSMAN_BY_ID;
-        return jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) ->
+        List<Sportsman> sportsmen = jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) ->
                 new Sportsman(
                         rs.getInt(Constants.ID),
                         rs.getString(Constants.COL_FULL_NAME),
@@ -45,11 +53,14 @@ public class PersonService {
                         rs.getInt(Constants.COL_SCHOOL_ID)
                 )
         );
+        return sportsmen.stream()
+                .map(PersonMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-    public List<Person> getCoachByName(String fullName) {
+    public List<PersonDto> getCoachByName(String fullName) {
         String sql = Constants.SELECT_COACH_BY_NAME;
-        return jdbcTemplate.query(sql, new Object[]{fullName}, (rs, rowNum) ->
+        List<Coach> coaches = jdbcTemplate.query(sql, new Object[]{fullName}, (rs, rowNum) ->
                 new Coach(
                         rs.getInt(Constants.ID),
                         rs.getString(Constants.COL_FULL_NAME),
@@ -57,12 +68,14 @@ public class PersonService {
                         rs.getInt(Constants.COL_SCHOOL_ID)
                 )
         );
+        return coaches.stream()
+                .map(PersonMapper::toDto)
+                .collect(Collectors.toList());
     }
 
-
-    public List<Coach> getCoachById(int id) {
+    public List<CoachDto> getCoachById(int id) {
         String sql = Constants.SELECT_COACH_BY_ID;
-        return jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) ->
+        List<Coach> coaches = jdbcTemplate.query(sql, new Object[]{id}, (rs, rowNum) ->
                 new Coach(
                         rs.getInt(Constants.ID),
                         rs.getString(Constants.COL_FULL_NAME),
@@ -70,6 +83,8 @@ public class PersonService {
                         rs.getInt(Constants.COL_SCHOOL_ID)
                 )
         );
+        return coaches.stream()
+                .map(PersonMapper::toDto)
+                .collect(Collectors.toList());
     }
-
 }

@@ -1,6 +1,7 @@
 package com.anth0o0ny.backend.controllers;
 
 import com.anth0o0ny.backend.Constants;
+import com.anth0o0ny.backend.dto.entitiesDto.TrainingWithExercisesDto;
 import com.anth0o0ny.backend.entities.TrainingWithExercises;
 import com.anth0o0ny.backend.service.ExerciseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,7 +21,7 @@ public class ExerciseController {
     }
 
     @GetMapping
-    public List<TrainingWithExercises> getExercisesByUserId(@PathVariable(Constants.USER_ID) int userId) {
+    public List<TrainingWithExercisesDto> getExercisesByUserId(@PathVariable(Constants.USER_ID) int userId) {
         return exerciseService.getExercisesByUserId(userId);
     }
 }
