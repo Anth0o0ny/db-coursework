@@ -51,8 +51,8 @@
 
 ### Этап 2
   - [x] Введение DTO для передачи данных
-  - [ ] Добавление валидации и обработки ошибок
-  - [ ] Логирование
+  - [x] Добавление валидации и обработки ошибок
+  - [x] Логирование
 
 ### Этап 3
 
@@ -63,3 +63,7 @@
 ### Этап 1
 - [Ссылка](https://drive.google.com/file/d/1yeSB1T552mvjUjd-E9PLZ4XAUDTT6y2L/view?usp=sharing) на видео
 - [Ссылка](https://docs.google.com/document/d/1stzw8tMQft5upqjB9-pWGyT729-GmFAplLWxJjgICpU/edit?usp=sharing) на отчет
+
+### Этап 2
+- [Ссылка](https://drive.google.com/file/d/1kEIBPPGx0OBVKLkX3KyUBqWrmOekkgyC/view?usp=sharing) на видео
+- [Ссылка](https://docs.google.com/document/d/1Ti0xRwpzq4wo3E6lwyuEShw4ThFQ4GA46JC7Pr63CJc/edit?usp=sharing) на отчет

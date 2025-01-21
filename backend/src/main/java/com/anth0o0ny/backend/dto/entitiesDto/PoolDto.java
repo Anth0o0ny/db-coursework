@@ -1,5 +1,8 @@
 package com.anth0o0ny.backend.dto.entitiesDto;
 
+import com.anth0o0ny.backend.Constants;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,7 +10,13 @@ import lombok.Setter;
 @Setter
 public class PoolDto {
     private int id;
+
+    @NotNull(message = Constants.ERROR_POOL_NAME_NULL)
+    @Size(min = 3, max = 100, message = Constants.ERROR_POOL_NAME_SIZE)
     private String name;
+
+    @NotNull(message = Constants.ERROR_LOCATION_NULL)
+    @Size(min = 3, max = 100, message = Constants.ERROR_LOCATION_SIZE)
     private String location;
 
     public PoolDto(int id, String name, String location) {
