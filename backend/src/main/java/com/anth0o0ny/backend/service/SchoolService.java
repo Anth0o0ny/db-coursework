@@ -37,7 +37,9 @@ public class SchoolService {
             return schools.stream()
                     .map(SportschoolMapper::toDto)
                     .collect(Collectors.toList());
-
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_FETCHING_SPORTSCHOOLS_BY_NAME, name, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_FETCHING_SPORTSCHOOLS_BY_NAME, name, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_FETCHING_SPORTSCHOOLS);

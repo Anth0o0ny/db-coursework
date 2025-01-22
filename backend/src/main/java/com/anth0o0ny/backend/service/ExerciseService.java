@@ -52,15 +52,17 @@ public class ExerciseService {
                 logger.warn(Constants.WARNING_EMPTY_EXERCISE_DESCRIPTION, trainingId);
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Constants.ERROR_EMPTY_DESCRIPTION);
             }
-
             if (count <= 0) {
                 logger.warn(Constants.WARNING_INVALID_EXERCISE_COUNT, trainingId);
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, Constants.ERROR_INVALID_EXERCISE_COUNT);
             }
             jdbcTemplate.update(Constants.INSERT_EXERCISE, description, count, trainingId);
+        } catch (ResponseStatusException e) {
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_ADDING_EXERCISE, trainingId, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_PROCESSING_REQUEST);
         }
     }
+
 }

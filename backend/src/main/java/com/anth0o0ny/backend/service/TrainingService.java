@@ -33,7 +33,9 @@ public class TrainingService {
             }
 
             return lastTrainingId;
-
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_CREATING_TRAINING, coachId, sportsmanId, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_CREATING_TRAINING, coachId, sportsmanId, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_CREATING_TRAINING);

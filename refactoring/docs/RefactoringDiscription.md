@@ -56,7 +56,7 @@
 
 ### Этап 3
 
-- [ ] Реализация Unit-тестов на методы сервисов
+- [x] Реализация Unit-тестов на методы сервисов
 
 ## Результаты после рефакторинга
 
@@ -67,3 +67,7 @@
 ### Этап 2
 - [Ссылка](https://drive.google.com/file/d/1kEIBPPGx0OBVKLkX3KyUBqWrmOekkgyC/view?usp=sharing) на видео
 - [Ссылка](https://docs.google.com/document/d/1Ti0xRwpzq4wo3E6lwyuEShw4ThFQ4GA46JC7Pr63CJc/edit?usp=sharing) на отчет
+
+### Этап 2
+- [Ссылка](https://drive.google.com/file/d/119ZIdEt8zCf1k--c8XM3S3JYVeos5Lja/view?usp=sharing) на видео
+- [Ссылка](https://docs.google.com/document/d/1vGieXCeMcfvoQk6xg1ag6mS2rA-aDT7gor-BDqCfrH0/edit?usp=sharing) на отчет

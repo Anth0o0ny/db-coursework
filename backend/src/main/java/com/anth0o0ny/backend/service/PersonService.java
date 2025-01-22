@@ -52,6 +52,9 @@ public class PersonService {
                     .map(PersonMapper::toDto)
                     .collect(Collectors.toList());
 
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_FETCHING_SPORTSMAN_BY_NAME, fullName, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_FETCHING_SPORTSMAN_BY_NAME, fullName, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_FETCHING_SPORTSMAN_DATA);
@@ -80,6 +83,9 @@ public class PersonService {
                     .map(PersonMapper::toDto)
                     .collect(Collectors.toList());
 
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_FETCHING_SPORTSMAN_BY_ID, id, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_FETCHING_SPORTSMAN_BY_ID, id, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_FETCHING_SPORTSMAN_DATA);
@@ -107,6 +113,9 @@ public class PersonService {
                     .map(PersonMapper::toDto)
                     .collect(Collectors.toList());
 
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_FETCHING_COACH_BY_NAME, fullName, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_FETCHING_COACH_BY_NAME, fullName, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_FETCHING_COACH_DATA);
@@ -134,6 +143,9 @@ public class PersonService {
                     .map(PersonMapper::toDto)
                     .collect(Collectors.toList());
 
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_FETCHING_COACH_BY_ID, id, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_FETCHING_COACH_BY_ID, id, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_FETCHING_COACH_DATA);

@@ -36,9 +36,13 @@ public class CompetitionService {
             return competitions.stream()
                     .map(CompetitionMapper::toDto)
                     .collect(Collectors.toList());
+        } catch (ResponseStatusException e) {
+            logger.error(Constants.ERROR_FETCH_COMPETITIONS, e);
+            throw e;
         } catch (Exception e) {
             logger.error(Constants.ERROR_FETCH_COMPETITIONS, e);
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, Constants.ERROR_PROCESSING_REQUEST);
         }
     }
+
 }
